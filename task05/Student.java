@@ -5,15 +5,15 @@ import java.util.Scanner;
 
 public class Student {
     static Scanner scanner = new Scanner(System.in);
-    private final String name;
-    private final String dateOfBirth;
-    private final String address;
-    private final String gender;
-    private final String fathersName;
-    private final String mothersName;
-    private final int rollNumber;
-    private final int regNo;
-    private final int grade;
+    private String name;
+    private String dateOfBirth;
+    private String address;
+    private String gender;
+    private String fathersName;
+    private String mothersName;
+    private int rollNumber;
+    private int regNo;
+    private int grade;
 
     public Student(String name, String dateOfBirth, String address, String gender,
                    String fathersName, String mothersName, int rollNumber,
@@ -75,13 +75,93 @@ public class Student {
 
 
         public void editStudentInfo(String name){
-            Student studentToEdit;
             for(Student student : this.studentList){
                 if(student.getName().equals(name)){
                     while(true){
-                        System.out.println("Enter the field which you wish to change(1 to stop editing):");
+                        System.out.println("Enter the field which you " +
+                                "wish to change(type \"stop\" to stop editing):");
                         String response = scanner.next().toLowerCase();
 
+                        if(response.equals("name")){
+                            System.out.println("\nEnter the modified name: ");
+                            student.name = scanner.next();
+                        }
+                        else if(response.equals("date of birth")){
+                            System.out.println("\nEnter the modified address: ");
+                            student.dateOfBirth = scanner.next();
+                        }
+                        else if(response.equals("gender")){
+                            System.out.println("\nEnter the modified gender: ");
+                            student.gender = scanner.next();
+                        }
+                        else if(response.equals("roll number")){
+                            System.out.println("\nEnter the modified roll number:  ");
+                            student.rollNumber = scanner.nextInt();
+                        }
+                        else if(response.equals("reg no")){
+                            System.out.println("\nEnter the modified roll number:  ");
+                            student.regNo = scanner.nextInt();
+                        }
+                        else if(response.equals("grade")){
+                            System.out.println("\nEnter the modified roll number:  ");
+                            student.grade = scanner.nextInt();
+                        }
+                        else if(response.equals("father's name")){
+                            System.out.println("\nEnter the modified roll number:  ");
+                            student.fathersName = scanner.next();
+                        }
+                        else if(response.equals("mother's name")){
+                            System.out.println("\nEnter the modified roll number:  ");
+                            student.mothersName = scanner.next();
+                        }
+                        else{
+                            break;
+                        }
+
+                    }
+                }
+            }
+        }
+        public void searchStudent(){
+            System.out.println("""
+                    Press 1 to search student by name
+                    Press 2 to search by registration number:\s""");
+            int choice = scanner.nextInt();
+
+            if(choice == 1){
+                System.out.println("Enter the student's name: ");
+                String studentName = scanner.next().toLowerCase();
+
+                for(Student student: studentList){
+                    if(student.name.equals(studentName)){
+                        System.out.println("Here are the details: ");
+                        System.out.println("Name: " + student.name);
+                        System.out.println("Birthday: " + student.dateOfBirth);
+                        System.out.println("Address: " + student.address);
+                        System.out.println("Gender: " + student.gender);
+                        System.out.println("Father's name: " + student.fathersName);
+                        System.out.println("Mother's name: " + student.mothersName);
+                        System.out.println("Roll number: " + student.rollNumber);
+                        System.out.println("Registration number: " + student.regNo);
+                        System.out.println("Grade: " + student.grade);
+                    }
+                }
+            } else if (choice == 2) {
+                System.out.println("enter student's registration number: ");
+                int registNo = scanner.nextInt();
+
+                for(Student student: studentList){
+                    if(student.regNo == registNo){
+                        System.out.println("Here are the details: ");
+                        System.out.println("Name: " + student.name);
+                        System.out.println("Birthday: " + student.dateOfBirth);
+                        System.out.println("Address: " + student.address);
+                        System.out.println("Gender: " + student.gender);
+                        System.out.println("Father's name: " + student.fathersName);
+                        System.out.println("Mother's name: " + student.mothersName);
+                        System.out.println("Roll number: " + student.rollNumber);
+                        System.out.println("Registration number: " + student.regNo);
+                        System.out.println("Grade: " + student.grade);
                     }
                 }
             }
